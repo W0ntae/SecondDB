@@ -5,12 +5,12 @@
 
     <insert id="addUser">
         insert into users (Username,Password)
-        values (#{username}, #{password})
+        values (#{Username}, #{Password})
     </insert>
 
     <select id="login" resultType="User">
         select *
         from users
-        where Username = #{username} and Password = #{password}
+        where Username = #{Username} and Password = #{Password}
     </select>
 </mapper>

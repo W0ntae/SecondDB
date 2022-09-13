@@ -4,12 +4,12 @@ import com.learning.jpa.domain.Member;
 import com.learning.jpa.service.MemberService;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Data
@@ -37,9 +37,23 @@ public class MemberController {
       return "member/failedLog";
     }
     if(loggedMember.getPassword().equals(member.encryptPassword(member.getPassword()))){
-      
-      return "welcome";
+      HttpSession currentSession = request.getSession();
+      currentSession.setAttribute("User", loggedMember.getUsername());
+      return "redirect:/member/welcome";
     }
+    return "redirect:/";
+  }
+  
+  @GetMapping("member/welcome")
+  public String welcome(Model model, HttpServletRequest request) {
+    model.addAttribute("Username",request.getSession().getAttribute("User"));
+    return "member/welcome";
+  }
+  
+  @GetMapping("member/logout")
+  public String logout(HttpServletRequest request){
+    HttpSession session = request.getSession();
+    session.invalidate();
     return "redirect:/";
   }
 }

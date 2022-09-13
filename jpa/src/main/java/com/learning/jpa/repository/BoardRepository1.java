@@ -18,7 +18,7 @@ public class BoardRepository1 implements BoardRepository{
   
   @Override
   public List<Board> findAll() {
-    TypedQuery<Board> select = em.createQuery("select b from boards as b", Board.class);
+    TypedQuery<Board> select = em.createQuery("select b from Board b", Board.class);
     return select.getResultList();
   }
   

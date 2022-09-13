@@ -2,9 +2,8 @@ package com.learning.jpa.domain;
 
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -13,10 +12,14 @@ import java.security.NoSuchAlgorithmException;
 @Entity
 @RequiredArgsConstructor
 @Table(name = "users")
-public class Member {
+public class Member implements Serializable {
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column (nullable = false)
   private int UserID;
   @Id
+  @Column (unique = true, nullable = false)
   private String Username;
+  @Column (nullable = false)
   private String Password;
   
   public Member(String Username, String Password){

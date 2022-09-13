@@ -3,23 +3,33 @@ package com.learning.jpa.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Getter
 @RequiredArgsConstructor
 @Table(name = "boards")
-public class Board {
+public class Board implements Serializable {
   
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column (nullable = false)
   private int BoardId;
+  
+  @Column (unique = true, nullable = false)
   @Id
   private String Title;
+  
+  @Column (nullable = false)
   private String Content;
+  
+  @Column (nullable = false)
   private String Author;
+  
+  @Column (nullable = false)
   private Date CreatedDate;
+  @Column
   private Date EditDate;
   
   public void setBoardId(int boardId){

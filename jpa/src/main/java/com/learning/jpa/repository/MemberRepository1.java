@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Repository
@@ -17,6 +18,7 @@ public class MemberRepository1 implements MemberRepository{
   private final EntityManager em;
   
   @Override
+  @Transactional
   public void registerMember(Member member){
     em.persist(member);
   }

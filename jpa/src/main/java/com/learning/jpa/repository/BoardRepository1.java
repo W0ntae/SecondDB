@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -22,6 +23,7 @@ public class BoardRepository1 implements BoardRepository{
   }
   
   @Override
+  @Transactional
   public void addBoard(Board board) {
     em.persist(board);
   }

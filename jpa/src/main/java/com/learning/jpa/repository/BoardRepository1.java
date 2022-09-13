@@ -20,4 +20,9 @@ public class BoardRepository1 implements BoardRepository{
     TypedQuery<Board> select = em.createQuery("select b from boards as b", Board.class);
     return select.getResultList();
   }
+  
+  @Override
+  public void addBoard(Board board) {
+    em.persist(board);
+  }
 }

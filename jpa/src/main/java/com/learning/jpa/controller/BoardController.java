@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,7 +23,13 @@ public class BoardController {
     return "board/boardCreate";
   }
   @PostMapping("board/boardCreate")
-  public String boardCreate( ){
+  public String boardCreate(String Title, String Content, HttpServletRequest request){
+    Board board = new Board();
+    board.setTitle(Title);
+    board.setContent(Content);
+    HttpSession session = request.getSession(false);
+    board.setAuthor((String) session.getAttribute("User"));
+    boardService.addBoard(board);
     return "member/welcome";
   }
   

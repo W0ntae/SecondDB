@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface BoardService {
   List<Board> findAll();
+  
+  void addBoard(Board board);
 }

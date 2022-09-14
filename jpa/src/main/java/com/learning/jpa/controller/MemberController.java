@@ -47,6 +47,9 @@ public class MemberController {
   @GetMapping("member/welcome")
   public String welcome(Model model, HttpServletRequest request) {
     model.addAttribute("Username",request.getSession().getAttribute("User"));
+    if (model.getAttribute("Username").equals(null)){
+      return "redirect:/";
+    }
     return "member/welcome";
   }
   

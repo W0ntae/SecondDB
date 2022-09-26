@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -28,7 +29,7 @@ public class Board implements Serializable {
   private String Author;
   
   @Column (nullable = false)
-  private Date CreatedDate;
+  private LocalDate CreatedDate;
   @Column
   private Date EditDate;
   
@@ -48,7 +49,7 @@ public class Board implements Serializable {
     this.Author = author;
   }
   
-  public void setCreatedDate(Date date){
+  public void setCreatedDate(LocalDate date){
     this.CreatedDate = date;
   }
   

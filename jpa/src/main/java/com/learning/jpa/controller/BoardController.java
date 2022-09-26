@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -29,6 +30,7 @@ public class BoardController {
     board.setContent(Content);
     HttpSession session = request.getSession(false);
     board.setAuthor((String) session.getAttribute("User"));
+    board.setCreatedDate(LocalDate.now());
     boardService.addBoard(board);
     return "member/welcome";
   }

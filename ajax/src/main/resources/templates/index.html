@@ -13,48 +13,32 @@
     </style>
     <title>AJAX</title>
 
-    <script type="text/javascript">
-        var xmlhttp= new XMLHttpRequest();
-        xmlhttp.open("POST", "/demo", true);
-
-        xmlhttp.onreadystatechange = function(){
-            if (this.readyState == 4 && this.status == 200){
-                var responseJsonObj = JSON.parse(this.responseText);
+    <script type="application/javascript">
+        function login(){
+            const request = new XMLHttpRequest();
+            if (request.readyState == 0){
+                let jsonObj = JSON;
+                jsonObj =
+                [
+                    {"Username" : document.getElementById("Username").value},
+                    {"Password" : document.getElementById("Password").value}
+                ];
+                request.responseType='json';
+                request.responseText = jsonObj.toString() ;
+                console.log(request.response);
+                alert("request built?")
             }
-        };
-
-        var jsonData = {"name" : "testname"};
-        xmlhttp.send(JSON.stringify(jsonData));
-    </script>
-
-
-    <script type="text/javascript">
-        var xmlhttp= new XMLHttpRequest();
-
-        xmlhttp.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
-                var responseJsonObj = JSON.parse(this.responseText);
-
-                console.log( responseJsonObj.name );
-                console.log( responseJsonObj.age );
-            }
-        };
-
-        xmlhttp.open("GET", "/demo", true)
-        xmlhttp.send();
+            request.open("POST", '/test', true);
+            request.send();
+        }
     </script>
 </head>
 <body>
 <div class="container">
     <h1>AJAX TEST!</h1>
-
-    <div class="row">
-        <div class="col">
-            <button type="button">
-                SEND
-            </button>
-        </div>
-    </div>
+    <h1><input id="Username" name="Username" type="text" value="Username" /></h1>
+    <p><input id="Password" name="Password" type="password" value="Password" /></p>
+    <button onclick="login()" >Login</button>
 
 </div>  <!-- container -->
 </body>

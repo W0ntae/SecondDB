@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type>" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+    <title>AJAX</title>
+
+    <script type="text/javascript">
+        var xmlhttp= new XMLHttpRequest();
+        xmlhttp.open("POST", "/demo", true);
+
+        xmlhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                var responseJsonObj = JSON.parse(this.responseText);
+            }
+        };
+
+        var jsonData = {"name" : "testname"};
+        xmlhttp.send(JSON.stringify(jsonData));
+    </script>
+
+
+    <script type="text/javascript">
+        var xmlhttp= new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var responseJsonObj = JSON.parse(this.responseText);
+
+                console.log( responseJsonObj.name );
+                console.log( responseJsonObj.age );
+            }
+        };
+
+        xmlhttp.open("GET", "/demo", true)
+        xmlhttp.send();
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>AJAX TEST!</h1>
+
+    <div class="row">
+        <div class="col">
+            <button type="button">
+                SEND
+            </button>
+        </div>
+    </div>
+
+</div>  <!-- container -->
+</body>
+</html>

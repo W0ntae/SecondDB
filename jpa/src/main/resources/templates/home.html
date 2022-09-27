@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <style>
+  .center{
+    text-align: center;
+  }
   h3{
     text-align: center;
     border: 1px none white;
@@ -12,12 +15,15 @@
     padding: 10px;
     text-align: center;
   }
+  .Activebutton{
+    border: 2px solid green;
+  }
 </style>
 <body>
-<h3>Welcome</h3>
-<form>
-  <p><a href="member/register">Register</a></p>
-  <p><a href="member/login">Login</a></p>
+<h3 class="title">Welcome</h3>
+<form class="center">
+  <button class="Activebutton">Register</button>
+  <button class="Activebutton">Login</button>
 </form>
 </body>
 </html>
